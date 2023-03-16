@@ -15,6 +15,9 @@ $records = mysqli_query($conn, "SELECT * FROM posts")
 	or die("Failed to get data: " . mysqli_error($conn));
 $row = mysqli_fetch_array($records);
 
+echo "<form action='process.php'>
+<button type='submit'>Logout</button>
+</form>";
 if ($records) {
 	foreach ($records as $record) {
 		echo "<div id='post-cont'>
