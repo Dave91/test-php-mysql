@@ -11,6 +11,7 @@ if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 
+//same logic to be used in home when filtering e.g. show only user posts
 session_start();
 if (!isset($_SESSION['user_id'])) {
 	//can login
@@ -24,7 +25,7 @@ if (!isset($_SESSION['user_id'])) {
 		echo "Logged in as " . $row['u_name'];
 		$_SESSION['user_id'] = $row['u_id'];
 		session_regenerate_id();
-		header("Location: /test-php-mysql/home.php");
+		header("Location: /test-php-mysql/user.php");
 	} else {
 		echo "Login failed.";
 		header("Location: /test-php-mysql/login.php");

@@ -1,0 +1,19 @@
+#menu-cont {
+  position: sticky;
+  top: 1vh;
+  left: 1vw;
+  width: auto;
+  border: solid grey 1px;
+  border-radius: 15px;
+  padding: 3vh 10vw;
+  background-color: beige;
+  opacity: 0.5;
+}
+
+#menu-cont:hover {
+  opacity: 1;
+}
+
+#btn-log {
+  float: right;
+}
