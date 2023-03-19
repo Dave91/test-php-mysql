@@ -9,10 +9,6 @@ try {
 } catch (Exception $e) {
 	echo 'DB file error: ',  $e->getMessage(), "\n";
 }
-
-function onFiltMod()
-{
-}
 ?>
 
 <!DOCTYPE html>
