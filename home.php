@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_SESSION['user_id'])) {
+	exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,12 +18,21 @@
 </head>
 
 <body>
-	<form id="menu-cont" action='login.php'>
-		<button id="btn-log" type='submit'>Login</button>
-	</form>
+	<header id="menu-cont">
+		<form action='login.php'>
+			<button id="btn-log" type='submit'>Login</button>
+		</form>
+		<form action='register.php'>
+			<button id="btn-log" type='submit'>Register</button>
+		</form>
+	</header>
 </body>
 
 </html>
 
 <?php
 include("allPosts.php");
+?>
+
+<?php
+include("footer.php");

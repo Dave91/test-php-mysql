@@ -4,8 +4,13 @@ try {
 } catch (Exception $e) {
 	echo 'DB file error: ',  $e->getMessage(), "\n";
 }
-
-$records = mysqli_query($conn, "SELECT * FROM posts")
+$query = "";
+if ($filtCat !== "" && $filtUser !== "") {
+	$query = "SELECT * FROM posts WHERE users_id = '$filtUser' AND p_category = '$filtCat'";
+} else {
+	$query = "SELECT * FROM posts WHERE users_id = '$filtUser' OR p_category = '$filtCat'";
+}
+$records = mysqli_query($conn, $query)
 	or die("Failed to get data: " . mysqli_error($conn));
 $row = mysqli_fetch_array($records);
 

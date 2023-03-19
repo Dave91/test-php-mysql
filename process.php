@@ -1,17 +1,10 @@
 <?php
-include("db.php");
-/* try {
-    require 'db.php';
+try {
+	require 'db.php';
 } catch (Exception $e) {
-    echo 'DB file error: ',  $e->getMessage(), "\n";
-} */
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
-if (!$conn) {
-	die("Connection failed: " . mysqli_connect_error());
+	echo 'DB file error: ',  $e->getMessage(), "\n";
 }
 
-//same logic to be used in home when filtering e.g. show only user posts
 session_start();
 if (!isset($_SESSION['user_id'])) {
 	//can login

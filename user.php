@@ -3,6 +3,16 @@ session_start();
 if (!isset($_SESSION['user_id'])) {
 	exit;
 }
+
+try {
+	require 'db.php';
+} catch (Exception $e) {
+	echo 'DB file error: ',  $e->getMessage(), "\n";
+}
+
+function onFiltMod()
+{
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,22 +28,50 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-	<form id="menu-cont" action='process.php'>
-		<button id="btn-log" type='submit'>Logout</button>
-		<select>
-			<option>books</option>
-			<option>movies</option>
-			<option>music</option>
-			<option>nature</option>
-			<option>poetry</option>
-		</select>
-	</form>
+	<header id="menu-cont">
+		<form action='process.php'>
+			<button id="btn-log" type='submit'>Logout</button>
+		</form>
+		<form method="post">
+			<button type="submit">Filter</button>
+			<select name="filtByCat">
+				<option></option>
+				<option>books</option>
+				<option>movies</option>
+				<option>music</option>
+				<option>nature</option>
+				<option>poetry</option>
+			</select>
+			<select name="filtByUser">
+				<option></option>
+				<?php
+				$users = mysqli_query($conn, "SELECT * FROM users")
+					or die("Failed to get data: " . mysqli_error($conn));
+				$row = mysqli_fetch_array($users);
+
+				if ($users) {
+					foreach ($users as $user) {
+						echo "<option value={$user['u_id']}>{$user['u_name']}</option>";
+					}
+				}
+				?>
+			</select>
+		</form>
+	</header>
 </body>
 
 </html>
 
 <?php
-include("allPosts.php");
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	$filtCat = $_POST['filtByCat'];
+	$filtUser = $_POST['filtByUser'];
+}
+if ($filtCat !== "" || $filtUser !== "") {
+	include("filtPosts.php");
+} else {
+	include("allPosts.php");
+}
 ?>
 
 <?php
