@@ -9,6 +9,8 @@ try {
 } catch (Exception $e) {
 	echo 'DB file error: ',  $e->getMessage(), "\n";
 }
+$filtCat = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByCat'] : "";
+$filtUser = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByUser'] : "";
 ?>
 
 <!DOCTYPE html>
@@ -24,34 +26,22 @@ try {
 </head>
 
 <body>
+
 	<header id="menu-cont">
 		<form action='process.php'>
 			<button id="btn-log" type='submit'>Logout</button>
 		</form>
-		<script>
-			var fCat = false;
-			var fUser = false;
-
-			function onFiltCat(inp) {
-				fCat = inp.current.value;
-				console.log(fCat);
-			}
-
-			function onFiltUser() {
-				fUser = true;
-			}
-		</script>
 		<form method="post">
 			<button type="submit">Filter</button>
-			<select name="filtByCat" onchange=onFiltCat(inp)>
+			<select name="filtByCat">
 				<option></option>
-				<option>books</option>
-				<option>movies</option>
-				<option>music</option>
-				<option>nature</option>
-				<option>poetry</option>
+				<option <?php echo ($filtCat === 'books') ? 'selected' : '' ?>>books</option>
+				<option <?php echo ($filtCat === 'movies') ? 'selected' : '' ?>>movies</option>
+				<option <?php echo ($filtCat === 'music') ? 'selected' : '' ?>>music</option>
+				<option <?php echo ($filtCat === 'nature') ? 'selected' : '' ?>>nature</option>
+				<option <?php echo ($filtCat === 'poetry') ? 'selected' : '' ?>>poetry</option>
 			</select>
-			<select name="filtByUser" onchange=onFiltUser()>
+			<select name="filtByUser">
 				<option></option>
 				<?php
 				$users = mysqli_query($conn, "SELECT * FROM users")
@@ -60,7 +50,8 @@ try {
 
 				if ($users) {
 					foreach ($users as $user) {
-						echo "<option value={$user['u_id']}>{$user['u_name']}</option>";
+						$selected = ($filtUser === $user['u_id']) ? 'selected' : '';
+						echo "<option value={$user['u_id']} {$selected}>{$user['u_name']}</option>";
 					}
 				}
 				?>
@@ -72,8 +63,6 @@ try {
 </html>
 
 <?php
-$filtCat = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByCat'] : "";
-$filtUser = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByUser'] : "";
 
 if ($filtCat !== "" || $filtUser !== "") {
 	include("filtPosts.php");
