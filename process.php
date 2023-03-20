@@ -11,10 +11,11 @@ if (!isset($_SESSION['user_id'])) {
 	$username = mysqli_real_escape_string($conn, $_POST['username']);
 	$password = mysqli_real_escape_string($conn, $_POST['password']);
 
-	$result = mysqli_query($conn, "SELECT * FROM users WHERE u_name = '$username' AND u_pass = '$password'")
+	$result = mysqli_query($conn, "SELECT * FROM users WHERE u_name = '$username'")
 		or die("Failed to get data: " . mysqli_error($conn));
 	$row = mysqli_fetch_array($result);
-	if ($row['u_name'] == $username && $row['u_pass'] == $password) {
+	$hashedpass = $row['u_pass'];
+	if (password_verify($password, $hashedpass)) {
 		echo "Logged in as " . $row['u_name'];
 		$_SESSION['user_id'] = $row['u_id'];
 		session_regenerate_id();

@@ -71,7 +71,7 @@ $filtUser = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByUser'] : "";
 </html>
 
 <?php
-
+//$_SESSION['user_id'] is the logged in id!!!
 if ($filtCat !== "" || $filtUser !== "") {
 	include("filtPosts.php");
 } else {
