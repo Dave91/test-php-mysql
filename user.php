@@ -28,9 +28,22 @@ try {
 		<form action='process.php'>
 			<button id="btn-log" type='submit'>Logout</button>
 		</form>
+		<script>
+			var fCat = false;
+			var fUser = false;
+
+			function onFiltCat(inp) {
+				fCat = inp.current.value;
+				console.log(fCat);
+			}
+
+			function onFiltUser() {
+				fUser = true;
+			}
+		</script>
 		<form method="post">
 			<button type="submit">Filter</button>
-			<select name="filtByCat">
+			<select name="filtByCat" onchange=onFiltCat(inp)>
 				<option></option>
 				<option>books</option>
 				<option>movies</option>
@@ -38,7 +51,7 @@ try {
 				<option>nature</option>
 				<option>poetry</option>
 			</select>
-			<select name="filtByUser">
+			<select name="filtByUser" onchange=onFiltUser()>
 				<option></option>
 				<?php
 				$users = mysqli_query($conn, "SELECT * FROM users")
@@ -59,10 +72,9 @@ try {
 </html>
 
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$filtCat = $_POST['filtByCat'];
-	$filtUser = $_POST['filtByUser'];
-}
+$filtCat = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByCat'] : "";
+$filtUser = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByUser'] : "";
+
 if ($filtCat !== "" || $filtUser !== "") {
 	include("filtPosts.php");
 } else {

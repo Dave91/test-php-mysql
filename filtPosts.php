@@ -12,7 +12,7 @@ if ($filtCat !== "" && $filtUser !== "") {
 }
 $records = mysqli_query($conn, $query)
 	or die("Failed to get data: " . mysqli_error($conn));
-$users = mysqli_query($conn, "SELECT u_name FROM posts, users WHERE users_id = u_id")
+$users = mysqli_query($conn, "SELECT * FROM posts, users WHERE users_id = u_id")
 	or die("Failed to get data: " . mysqli_error($conn));
 $row = mysqli_fetch_array($records);
 
