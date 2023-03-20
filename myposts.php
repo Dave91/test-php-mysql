@@ -28,6 +28,9 @@ $filtUser = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByUser'] : "";
 <body>
 
 	<header id="menu-cont">
+		<form action='user.php'>
+			<button type='submit'>Home</button>
+		</form>
 		<form action='profile.php'>
 			<button type='submit'>My Profile</button>
 		</form>

@@ -20,10 +20,10 @@ if (isset($_SESSION['user_id'])) {
 <body>
 	<header id="menu-cont">
 		<form action='login.php'>
-			<button id="btn-log" type='submit'>Login</button>
+			<button type='submit'>Login</button>
 		</form>
 		<form action='register.php'>
-			<button id="btn-log" type='submit'>Register</button>
+			<button type='submit'>Register</button>
 		</form>
 	</header>
 </body>
