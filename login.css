@@ -4,11 +4,12 @@ body {
 }
 
 #form-cont {
-  width: 25%;
+  width: 30vw;
+  max-width: 200px;
   border: solid grey 1px;
   border-radius: 15px;
-  margin: 35% auto;
-  padding: 5vh 10vw;
+  margin: 30vh auto;
+  padding: 50px;
   background-color: beige;
   text-align: center;
 }
