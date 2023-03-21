@@ -20,13 +20,13 @@ if ($records) {
 			}
 		}
 		echo "<div id='post-cont'>
+		<h4>#{$record['p_category']}</h4>
 		<h2>{$record['p_title']}</h2>
 		<h4>by {$name}</h4>
 		<img src=`{$record['p_image']}` alt=''></img>
 		<p>{$record['p_text']}</p>
-		<p>{$record['p_category']}</p>
-		<p>{$record['p_edited']}</p>
-		<p>{$record['p_created']}</p>
+		<h5>Edited: {$record['p_edited']}</h5>
+		<h5>Created: {$record['p_created']}</h5>
 		</div>";
 	}
 } else {

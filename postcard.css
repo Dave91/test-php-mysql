@@ -1,0 +1,25 @@
+#post-cont {
+  width: 75%;
+  border: solid grey 1px;
+  border-radius: 15px;
+  box-shadow: 0 2px 2px chocolate;
+  margin: 5vh auto;
+  padding: 5vh 10vw;
+  background: radial-gradient(beige 90%, burlywood);
+  text-align: center;
+}
+
+#post-cont h4:first-child {
+  text-align: left;
+  margin: auto;
+  background: linear-gradient(to right, burlywood, beige 25%);
+}
+
+#post-cont p {
+  text-align: justify;
+}
+
+#post-cont h5 {
+  text-align: right;
+  margin: auto;
+}

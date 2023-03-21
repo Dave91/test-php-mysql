@@ -3,6 +3,15 @@ session_start();
 if (isset($_SESSION['user_id'])) {
 	header("Location: /test-php-mysql/user.php");
 }
+
+try {
+	require 'db.php';
+} catch (Exception $e) {
+	echo 'DB file error: ',  $e->getMessage(), "\n";
+}
+//vars for filtpanel
+$filtCat = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByCat'] : "";
+$filtUser = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByUser'] : "";
 ?>
 
 <!DOCTYPE html>
@@ -13,8 +22,9 @@ if (isset($_SESSION['user_id'])) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Home</title>
-	<link rel="stylesheet" type="text/css" href="./home.css" />
+	<link rel="stylesheet" type="text/css" href="./base.css" />
 	<link rel="stylesheet" type="text/css" href="./menu.css" />
+	<link rel="stylesheet" type="text/css" href="./postcard.css" />
 </head>
 
 <body>
@@ -25,14 +35,20 @@ if (isset($_SESSION['user_id'])) {
 		<form action='register.php'>
 			<button type='submit'>Register</button>
 		</form>
+		<div id="filt-panel">
+			<?php include("filtpanel.php"); ?>
+		</div>
 	</header>
+	<main>
+		<?php
+		if ($filtCat !== "" || $filtUser !== "") {
+			include("filtPosts.php");
+		} else {
+			include("allPosts.php");
+		}
+		?>
+	</main>
+	<?php include("footer.php"); ?>
 </body>
 
 </html>
-
-<?php
-include("allPosts.php");
-?>
-
-<?php
-include("footer.php");

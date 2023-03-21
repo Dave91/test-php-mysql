@@ -8,6 +8,7 @@ body {
   max-width: 200px;
   border: solid grey 1px;
   border-radius: 15px;
+  box-shadow: 0 2px 2px dodgerblue;
   margin: 30vh auto;
   padding: 50px;
   background-color: beige;

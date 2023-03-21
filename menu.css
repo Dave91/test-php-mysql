@@ -4,7 +4,8 @@
   left: 1vw;
   width: auto;
   border: solid grey 2px;
-  border-radius: 15px;
+  border-radius: 25px;
+  background: radial-gradient(beige 60%, burlywood);
   padding: 3vh 10vw;
   background-color: beige;
   opacity: 0.5;
