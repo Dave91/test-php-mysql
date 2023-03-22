@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-	exit;
+	header("Location: /test-php-mysql/home.php");
 }
 
 try {
@@ -10,7 +10,7 @@ try {
 	echo 'DB file error: ',  $e->getMessage(), "\n";
 }
 $filtCat = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByCat'] : "";
-$filtUser = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByUser'] : "";
+$filtUser = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -21,8 +21,9 @@ $filtUser = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByUser'] : "";
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Home</title>
-	<link rel="stylesheet" type="text/css" href="./user.css" />
+	<link rel="stylesheet" type="text/css" href="./base.css" />
 	<link rel="stylesheet" type="text/css" href="./menu.css" />
+	<link rel="stylesheet" type="text/css" href="./postcard.css" />
 </head>
 
 <body>
@@ -48,21 +49,6 @@ $filtUser = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByUser'] : "";
 					<option <?php echo ($filtCat === 'nature') ? 'selected' : '' ?>>nature</option>
 					<option <?php echo ($filtCat === 'poetry') ? 'selected' : '' ?>>poetry</option>
 				</select>
-				<select name="filtByUser">
-					<option></option>
-					<?php
-					$users = mysqli_query($conn, "SELECT * FROM users")
-						or die("Failed to get data: " . mysqli_error($conn));
-					$row = mysqli_fetch_array($users);
-
-					if ($users) {
-						foreach ($users as $user) {
-							$selected = ($filtUser === $user['u_id']) ? 'selected' : '';
-							echo "<option value={$user['u_id']} {$selected}>{$user['u_name']}</option>";
-						}
-					}
-					?>
-				</select>
 			</form>
 		</div>
 	</header>
@@ -71,12 +57,7 @@ $filtUser = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST['filtByUser'] : "";
 </html>
 
 <?php
-//$_SESSION['user_id'] is the logged in id!!!
-if ($filtCat !== "" || $filtUser !== "") {
-	include("filtPosts.php");
-} else {
-	include("allPosts.php");
-}
+include("filtPosts.php");
 ?>
 
 <?php

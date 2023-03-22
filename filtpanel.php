@@ -3,6 +3,7 @@
 	<select name="filtByCat">
 		<option></option>
 		<option <?php echo ($filtCat === 'books') ? 'selected' : '' ?>>books</option>
+		<option <?php echo ($filtCat === 'games') ? 'selected' : '' ?>>games</option>
 		<option <?php echo ($filtCat === 'movies') ? 'selected' : '' ?>>movies</option>
 		<option <?php echo ($filtCat === 'music') ? 'selected' : '' ?>>music</option>
 		<option <?php echo ($filtCat === 'nature') ? 'selected' : '' ?>>nature</option>
