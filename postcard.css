@@ -15,11 +15,23 @@
   background: linear-gradient(to right, burlywood, beige 25%);
 }
 
-#post-cont p {
+#post-cont h5,
+#comm-cont h5 {
+  text-align: left;
+  margin: auto;
+}
+
+#post-cont p,
+#comm-cont p {
   text-align: justify;
 }
 
-#post-cont h5 {
-  text-align: right;
-  margin: auto;
+#comm-cont {
+  border: solid grey 1px;
+  border-radius: 15px;
+  box-shadow: 0 2px 2px coral;
+  margin: 2vh auto;
+  padding: 2vh 4vw;
+  background: radial-gradient(beige 90%, burlywood);
+  text-align: center;
 }
