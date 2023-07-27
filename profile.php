@@ -57,15 +57,17 @@ $filtUser = $_SESSION['user_id'];
 
 		if ($row) {
 			echo "<div id='post-cont'>
-					<h4>{$row['u_name']}</h4>
+					<h4>Welcome, {$row['u_name']} !</h4>
 					<form>
-					<input></input>
-					<input></input>
-					<button type='submit'>Save</button>
+					<br>
+					<label>Password</label>
+					<input placeholder='new password'></input>
+					<input placeholder='new password again'></input>
+					<button type='submit'>Modify</button>
 					</form>
 					</div>";
-			//<img src=`{$userdata['u_icon']}` alt=''></img> cat api??
-			//<input placeholder=`{$userdata['u_email']}`></input> ??
+			//<img src=`{$row['u_icon']}` alt=''></img> cat api??
+			//<input placeholder=`{$row['u_email']}`></input> ??
 		}
 		?>
 		<?php
