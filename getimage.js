@@ -1,6 +1,6 @@
+import api_key from "./api";
+
 const url = "https://api.thecatapi.com/v1/images/search?";
-const api_key =
-  "live_Pa7h5cSqQiNHaUM1CUwqQ5cvAWz6vUTq5nlLpTfhifBa0VcRWJp0j8PSE1hJWdKc";
 
 fetch(url, {
   headers: {
@@ -15,8 +15,7 @@ fetch(url, {
     imagesData.map(function (imageData) {
       let image = document.createElement("img");
       image.src = `${imageData.url}`;
-      //let imageCont = document.createElement("div");
-      document.getElementById("imageCont").appendChild(image);
+      document.getElementById("imgCont").appendChild(image);
     });
   })
   .catch(function (error) {

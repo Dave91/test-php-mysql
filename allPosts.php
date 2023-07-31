@@ -27,6 +27,12 @@ if ($records) {
 		$comms = mysqli_query($conn, "SELECT * FROM comms WHERE posts_id = '$pid'")
 			or die("Failed to get data: " . mysqli_error($conn));
 
+		/*
+		<div id='imgCont'></div>
+    <script type=\"text/javascript\" src='placeimage.js'>
+    </script>
+		replace <img> with sth as above...
+		*/
 		$crow = mysqli_fetch_array($comms);
 		echo "<div id='post-cont'>
 		<h4>#{$record['p_category']}</h4>
