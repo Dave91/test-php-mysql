@@ -32,6 +32,9 @@ $filtUser = $_SESSION['user_id'];
 		<form action='user.php'>
 			<button type='submit'>Home</button>
 		</form>
+		<form action="postform.php">
+			<button type="submit">Create Post</button>
+		</form>
 		<form action='myposts.php'>
 			<button type='submit'>My Posts</button>
 		</form>
@@ -89,16 +92,17 @@ $filtUser = $_SESSION['user_id'];
 		?>
 		<?php
 		//my comms
-		$query = "SELECT * FROM posts WHERE users_id = '$filtUser' ORDER BY p_id DESC LIMIT 3";
+		$query = "SELECT * FROM comms WHERE users_id = '$filtUser' ORDER BY c_id DESC LIMIT 3";
 		$userposts = mysqli_query($conn, $query)
 			or die("Failed to get data: " . mysqli_error($conn));
 		$row = mysqli_fetch_array($userposts);
 		if ($userposts) {
 			echo "<div id='post-cont'>";
 			foreach ($userposts as $post) {
-				echo "<h2>{$post['p_title']}</h2>";
+				//title of commented post needed here first
+				echo "<h2>{$post['c_text']}</h2>";
 			}
-			echo "<form action='myposts.php'>
+			echo "<form action='mycomms.php'>
 			<button type='submit'>View All</button>
 			</form>
 			</div>";
@@ -106,16 +110,16 @@ $filtUser = $_SESSION['user_id'];
 		?>
 		<?php
 		//my likes
-		$query = "SELECT * FROM posts WHERE users_id = '$filtUser' ORDER BY p_id DESC LIMIT 3";
+		$query = "SELECT * FROM likes WHERE users_id = '$filtUser' ORDER BY l_id DESC LIMIT 3";
 		$userposts = mysqli_query($conn, $query)
 			or die("Failed to get data: " . mysqli_error($conn));
 		$row = mysqli_fetch_array($userposts);
 		if ($userposts) {
 			echo "<div id='post-cont'>";
 			foreach ($userposts as $post) {
-				echo "<h2>{$post['p_title']}</h2>";
+				echo "<h2>{$post['l_title']}</h2>";
 			}
-			echo "<form action='myposts.php'>
+			echo "<form action='mylikes.php'>
 			<button type='submit'>View All</button>
 			</form>
 			</div>";
