@@ -1,5 +1,8 @@
 body {
   background-color: bisque;
+  background-image: url("rawpixel_com-blue-smoky-art-abstract-background.jpg");
+  background-position: center;
+  background-size: 175%;
   color: black;
 }
 

@@ -1,4 +1,8 @@
 body {
   background-color: bisque;
+  background-image: url("pencil-sketch-texture-by-vector_corp-on-freepik_com.jpg");
+  background-position: center;
+  background-size: auto;
+  background-blend-mode: luminosity;
   color: black;
 }
